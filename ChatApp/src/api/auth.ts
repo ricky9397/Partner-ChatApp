@@ -18,7 +18,7 @@ export async function getLoginStatus() {
   const response = await client.get<User>('/users/me');
   return response.data;
 }
-
+ 
 interface RegisterParams {
   username: string;
   email: string;
