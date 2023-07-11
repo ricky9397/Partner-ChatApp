@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Pressable,
 } from 'react-native';
 import validator from 'validator';
 import AuthContext from '../components/AuthContext';
@@ -15,6 +16,7 @@ import Colors from '../modules/Colors';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
+import useLogin from '../hooks/useLogin';
 
 const styles = StyleSheet.create({
   container: {
@@ -79,6 +81,23 @@ const SigninScreen = () => {
   const { navigate } =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  
+  const {mutate: login, isLoading: loginLoading} = useLogin();
+
+  const isLoading = loginLoading;
+
+  const onPress = () => {
+    if(isLoading) {
+      return;
+    }
+
+    login({
+      email,
+      password,
+    });
+    
+  }
+
   const emailErrorText = useMemo(() => {
     if (email.length === 0) {
       return '이메일을 입력해주세요.';
@@ -118,13 +137,13 @@ const SigninScreen = () => {
     return [styles.signinButton, styles.disabledSigninButton];
   }, [signinButtonEnabled]);
 
-  const onPressSigninButton = useCallback(async () => {
-    try {
-      await signin(email, password);
-    } catch (error: any) {
-      Alert.alert(error.message);
-    }
-  }, [email, password, signin]);
+  // const onPressSigninButton = useCallback(async () => {
+  //   try {
+  //     await signin(email, password);
+  //   } catch (error: any) {
+  //     Alert.alert(error.message);
+  //   }
+  // }, [email, password, signin]);
 
   const onPressSignupButton = useCallback(() => {
     navigate('Signup');
@@ -165,7 +184,7 @@ const SigninScreen = () => {
             <View>
               <TouchableOpacity
                 style={signinButtonStyle}
-                onPress={onPressSigninButton}
+                onPress={onPress}
                 disabled={!signinButtonEnabled}>
                 <Text style={styles.signinButtonText}>로그인</Text>
               </TouchableOpacity>

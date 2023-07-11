@@ -3,14 +3,15 @@ import {AuthResult, User} from './types';
 
 export async function register(params: RegisterParams) {
   const response = await client.post<AuthResult>(
-    '/auth/local/register',
+    //'/auth/local/register',
+    '/login',
     params,
   );
   return response.data;
 }
 
 export async function login(params: LoginParams) {
-  const response = await client.post<AuthResult>('/auth/local', params);
+  const response = await client.post<AuthResult>('/login', params);
   return response.data;
 }
 
@@ -26,6 +27,6 @@ interface RegisterParams {
 }
 
 interface LoginParams {
-  identifier: string;
+  email: string;
   password: string;
 }

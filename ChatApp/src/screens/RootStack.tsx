@@ -6,13 +6,13 @@ import {RootStackParamList} from './types';
 import SigninScreen from '../SigninScreen/SigninScreen';
 import SignupScreen from '../SignupScreen/SignupScreen';
 // import MyArticlesScreen from './MyArticlesScreen';
-// import useAuthLoadEffect from '../hooks/useAuthLoadEffect';
+import useAuthLoadEffect from '../hooks/useAuthLoadEffect';
 // import WriteScreen from './WriteScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootStack() {
-//   useAuthLoadEffect();
+  useAuthLoadEffect();
 
   return (
     <Stack.Navigator screenOptions={{headerBackTitle: '닫기'}}>
