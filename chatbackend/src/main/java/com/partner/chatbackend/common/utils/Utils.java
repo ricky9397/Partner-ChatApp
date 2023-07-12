@@ -1,11 +1,9 @@
 package com.partner.chatbackend.common.utils;
 
-import com.project.ricky.user.dto.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class Utils {
 

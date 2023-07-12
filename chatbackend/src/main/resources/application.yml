@@ -15,14 +15,14 @@ spring:
           google:
             client-id: 596950358351-5016avddl8fq2n4toiqirm1a2akk1pth.apps.googleusercontent.com
             client-secret: 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
-  #  datasource:
-  #    driver-class-name: com.mysql.cj.jdbc.Driver
-  #    url: jdbc:mysql://localhost:3306/project?serverTimezone=Asia/Seoul
-  #    username: project
-  #    password: 1234
+
   datasource:
-    #url: jdbc:mysql://10.100.0.104:3306/ricky_schema
-    #132.226.22.62
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/partner?serverTimezone=Asia/Seoul
+    username: partner
+    password: 1234
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://132.226.22.62:3306/ricky_schema?serverTimezone=Asia/Seoul
 #    username: ricky
 #    password: 1234
@@ -35,7 +35,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create #create update none
+      ddl-auto: update #create update none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true

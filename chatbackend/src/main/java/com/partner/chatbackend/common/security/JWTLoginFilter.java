@@ -81,7 +81,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain chain,
-            Authentication authResult) throws ServletException, IOException {
+            Authentication authResult) throws IOException {
 
         UserDetail userDetail = (UserDetail) authResult.getPrincipal(); // 성공한 유저정보를 UserDetail객체에 담는다.
 

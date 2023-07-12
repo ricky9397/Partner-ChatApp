@@ -1,11 +1,14 @@
 package com.partner.chatbackend.user.domain;
 
+import com.partner.chatbackend.common.cm.BaseTimeEntity;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @NoArgsConstructor
@@ -13,8 +16,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@DynamicInsert
 @Table(name = "TB_USERS")
-public class User{
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,15 +40,15 @@ public class User{
     @Column(name = "USER_PHONE")
     private String userPhone;
 
-    //@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    //@JoinColumn(foreignKey = @ForeignKey(name = "userId"))
-    //private Set<Authority> authorities;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_ID")
+    private List<Authority> authorities = new ArrayList<>();
 
     @ColumnDefault(value = "0")
     @Column(name = "LOGIN_FAIL_CNT")
     private int loginFailCnt;
 
-    @NotNull
+    @ColumnDefault(value = "'Y'")
     @Column(name = "USER_YN", length = 1)
     private String userYn;
 
@@ -52,19 +56,8 @@ public class User{
     @Column(name = "LOCKED_YN")
     private String lockedYn;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "REG_DATE")
-    private LocalDateTime regDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "MOD_DATE")
-    private LocalDateTime modDate;
-
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private LocalDateTime loginDate;
-
     @ColumnDefault(value = "'Y'")
-    @Column(name = "USE_YN")
+    @Column(name = "USE_YN", length = 1)
     private String useYn;
 
     @ColumnDefault(value = "'ROLE_USER'")

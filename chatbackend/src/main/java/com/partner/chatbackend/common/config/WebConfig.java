@@ -16,6 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:1337")
                 .allowedOrigins("http://localhost:5000")
                 .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("http://localhost:8080")
 //                .allowedOrigins("http://192.168.219.100:3000")
 //                .allowedOrigins("http://192.168.219.100")
                 .allowedHeaders("*") // 어떤 헤더들을 허용할 것인지

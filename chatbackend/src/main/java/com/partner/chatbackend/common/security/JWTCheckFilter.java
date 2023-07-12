@@ -22,7 +22,6 @@ import java.io.IOException;
 // 4.만약에 권한이 인증이 필요한 주소가 아니라면 이필터를 안탄다.
 public class JWTCheckFilter extends BasicAuthenticationFilter {
 
-    private final ObjectMapper objectMapper = new ObjectMapper(); // ObjectMapper를 이용하여 Json 타입을 객체에 담는다.
     private final UserSecurityService userSecurityService;
 
     public JWTCheckFilter(AuthenticationManager authenticationManager, UserSecurityService userSecurityService) {

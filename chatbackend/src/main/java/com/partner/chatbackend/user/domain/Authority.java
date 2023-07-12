@@ -1,17 +1,13 @@
 package com.partner.chatbackend.user.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -26,9 +22,9 @@ public class Authority implements GrantedAuthority {
     public static final Authority USER_AUTHORITY = Authority.builder().authority(ROLE_USER).build();
     public static final Authority ADMIN_AUTHORITY = Authority.builder().authority(ROLE_ADMIN).build();
 
-
     @Id
-    private Long userId;
+    @Column(name = "USER_ID")
+    private Long id;
 
     @Id
     private String authority;
