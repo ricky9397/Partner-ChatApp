@@ -47,14 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // 시큐리티 세션을 사용하지 않음.
                 .addFilterAt(loginFilter, UsernamePasswordAuthenticationFilter.class) // 로그인처리필터
                 .addFilterAt(checkFilter, BasicAuthenticationFilter.class) // 토큰검증필터
-                .authorizeRequests(config -> {
-                    config
-                            .antMatchers("/**").permitAll()
-                            .antMatchers("/auth/**").permitAll()
-                            .antMatchers("/admin/**").hasAuthority("ROLE_USER")
-                            .antMatchers("/oauth2/**").permitAll()
-                    ;
-                });
+                .authorizeRequests(config -> config
+                        .antMatchers("/**").permitAll()
+                        .antMatchers("/auth/**").permitAll()
+                        .antMatchers("/admin/**").hasAuthority("ROLE_USER")
+                        .antMatchers("/oauth2/**").permitAll()
+                );
     }
 
 }

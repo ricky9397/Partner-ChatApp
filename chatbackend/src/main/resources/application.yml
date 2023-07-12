@@ -41,5 +41,8 @@ spring:
     show-sql: true
     generate-ddl: true
 
-jwt:
-  secret: 12345678901234567890123456789012
+  jwt:
+    secret: 12345678901234567890123456789012
+
+
+
